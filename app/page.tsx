@@ -1,12 +1,14 @@
 'use client'
 
-import { Container, Paper } from '@mui/material'
-import ImageCaptionForm from './components/Form/ImageCaptionForm'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  return (
-    <Container maxWidth="md" sx={{ py: 8, backgroundColor: 'transparent' }}>
-      <ImageCaptionForm />
-    </Container>
-  )
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/caption')
+  }, [router])
+
+  return null
 }

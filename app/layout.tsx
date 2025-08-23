@@ -7,6 +7,7 @@ import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import rtlPlugin from 'stylis-plugin-rtl'
 import { prefixer } from 'stylis'
+import NavBar from './components/Navigation/NavBar'
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
         <CacheProvider value={cacheRtl}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <NavBar />
             {children}
           </ThemeProvider>
         </CacheProvider>
