@@ -1,103 +1,107 @@
-import Image from "next/image";
+'use client'
+
+import React from 'react'
+import { Box, Typography, Stack, IconButton, Divider } from '@mui/material'
+import { useRouter } from 'next/navigation'
+import HomeIcon from '@mui/icons-material/Home';
+import FeatureCard from './components/Card/FeatureCard'
+
+interface FeatureCardData {
+  id: string
+  title: string
+  description: string
+  image: string
+  path: string
+  color: string
+  bg: string
+}
+
+const featureCards: FeatureCardData[] = [
+  {
+    id: 'caption',
+    title: 'توصیف تصویر',
+    description: 'ابزار ما محتوای هر تصویر را تحلیل می‌کند و توضیحی روان و قابل فهم از آن ارائه می‌دهد. مناسب برای دسترس‌پذیری، تولید محتوا و مستندسازی.',
+    image: '/images/caption.png',
+    path: '/caption',
+    color: '#D9333E',
+    bg: '#FFEBEC',
+  },
+  {
+    id: 'tags',
+    title: 'تگ‌گذاری',
+    description: 'این ابزار اجزای اصلی تصویر را شناسایی کرده و برچسب‌های مرتبط تولید می‌کند. به شما کمک می‌کند تصاویرتان سریع‌تر دسته‌بندی و جستجو شوند.',
+    image: '/images/tags.png',
+    path: '/tags',
+    color: '#8E25F6',
+    bg: '#F3E9FD',
+  },
+  {
+    id: 'elements',
+    title: 'پردازش تصویر',
+    description: 'این ابزار اجزای موجود در هر تصویر را شناسایی کرده و به‌صورت یک فهرست کامل در اختیار شما قرار می‌دهد. روشی ساده و سریع برای درک بهتر محتوای تصاویر.',
+    image: '/images/elements.png',
+    path: '/elements',
+    color: '#3399D4',
+    bg: '#EBF8FF',
+  }
+]
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const router = useRouter()
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const handleCardClick = (path: string) => {
+    router.push(path)
+  }
+
+  return (
+    <>
+      <Box sx={{ textAlign: 'center', mb: 2, position: 'relative' }}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            color: '#2C3E50',
+            mb: 2,
+          }}
+        >
+          ابزار ها
+        </Typography>
+      </Box>
+      <Divider sx={{ mb: 2, mx: -3, border: '1px solid #F1F5F9' }} />
+      <Stack spacing={6}>
+        <Typography
+          variant="h6"
+          component="p"
+          sx={{
+            color: '#334155',
+            fontWeight: 500,
+            fontSize: 16,
+          }}
+        >
+          یکی از ویژگی سازها را انتخاب کنید
+        </Typography>
+        <Stack
+          direction={{ xs: 'column', md: 'row' }}
+          spacing={{ xs: 3, md: 2 }}
+          sx={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap'
+          }}
+        >
+          {featureCards.map((card) => (
+            <FeatureCard
+              key={card.id}
+              id={card.id}
+              title={card.title}
+              description={card.description}
+              image={card.image}
+              color={card.color}
+              onClick={() => handleCardClick(card.path)}
+              bg={card.bg}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+          ))}
+        </Stack>
+      </Stack>
+    </>
+  )
 }
