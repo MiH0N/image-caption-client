@@ -54,17 +54,17 @@ const toneOptions: ToneOption[] = [
 interface ImageCaptionFormProps {
   onSubmit: (values: FormValues) => Promise<void>
   loading?: boolean
-  title?: string
   description?: string
-  submitButtonText?: string
+  submitButtonText?: string;
+  showExtraInput?: boolean
 }
 
 export default function ImageCaptionForm({
   onSubmit,
   loading = false,
-  title = 'تولیدکننده کپشن تصویر',
   description = 'تولید کپشن برای تصاویر با استفاده از هوش مصنوعی',
   submitButtonText = 'تولید کپشن',
+  showExtraInput = true,
 }: ImageCaptionFormProps) {
   const { handleSubmit, control, reset, setValue, watch } = useForm<FormValues>({
     defaultValues: {
@@ -93,20 +93,16 @@ export default function ImageCaptionForm({
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleFormSubmit)} sx={{ flex: 1 }}>
-      {/* <Typography variant="body1" component="p" fontWeight={700} gutterBottom>
-          {title}
-        </Typography> */}
-      <Typography variant="body2" component="p" color="text.secondary" gutterBottom>
+      <Typography variant="subtitle1" component="p" color="text.secondary" gutterBottom sx={{ mb: 2.5 }}>
         {description}
       </Typography>
-
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mt: 3 }}>
+      <Stack direction='row-reverse' spacing={2}>
         <Controller
           name="image"
           control={control}
           rules={{ required: 'لطفاً یک تصویر بارگذاری کنید' }}
           render={({ field, fieldState }) => (
-            <Box>
+            <Box sx={{ flex: '1 1 0' }}>
               <ImageUploadDropzone
                 key={field.value ? field.value.name : 'empty'}
                 value={field.value}
@@ -120,93 +116,95 @@ export default function ImageCaptionForm({
             </Box>
           )}
         />
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: !showExtraInput ? 5.5 : 2, mt: 3, flex: '1 1 0' }}>
+          <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', md: 'row' } }}>
+            <Controller
+              name="tone"
+              control={control}
+              render={({ field }) => (
+                <TextField select fullWidth label="انتخاب لحن" disabled={isBlip} {...field}>
+                  {toneOptions.map((opt) => (
+                    <MenuItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              )}
+            />
 
-        <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', md: 'row' } }}>
+            <Controller
+              name="language"
+              control={control}
+              render={({ field }) => (
+                <FormControl fullWidth disabled={isBlip}>
+                  <InputLabel id="language-label">انتخاب زبان</InputLabel>
+                  <Select
+                    labelId="language-label"
+                    label="انتخاب زبان"
+                    value={field.value?.code ?? ''}
+                    onChange={(e) => {
+                      const selected = languageOptions.find((opt) => opt.code === e.target.value)
+                      field.onChange(selected ?? null)
+                    }}
+                    disabled={isBlip}
+                  >
+                    {languageOptions.map((opt) => (
+                      <MenuItem key={opt.code} value={opt.code}>
+                        {opt.code === 'fa' ? 'فارسی' : 'انگلیسی'}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </Box>
+
           <Controller
-            name="tone"
+            name="model"
             control={control}
             render={({ field }) => (
-              <TextField select fullWidth label="انتخاب لحن" disabled={isBlip} {...field}>
-                {toneOptions.map((opt) => (
-                  <MenuItem key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </MenuItem>
-                ))}
+              <TextField select fullWidth label="مدل" {...field}>
+                <MenuItem value="gpt4o">gpt</MenuItem>
+                <MenuItem value="gemini_pro">gemini</MenuItem>
+                <MenuItem value="blip">blip</MenuItem>
+                <MenuItem value="llama">llama</MenuItem>
               </TextField>
             )}
           />
-
-          <Controller
-            name="language"
-            control={control}
-            render={({ field }) => (
-              <FormControl fullWidth disabled={isBlip}>
-                <InputLabel id="language-label">انتخاب زبان</InputLabel>
-                <Select
-                  labelId="language-label"
-                  label="انتخاب زبان"
-                  value={field.value?.code ?? ''}
-                  onChange={(e) => {
-                    const selected = languageOptions.find((opt) => opt.code === e.target.value)
-                    field.onChange(selected ?? null)
-                  }}
+          {showExtraInput &&
+            <Controller
+              name="context"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  label="توضیحات اضافی"
+                  placeholder="مثال: این عکس از نمای بیرونی موزه مت نیویورک است"
+                  fullWidth
+                  multiline
+                  minRows={3}
                   disabled={isBlip}
-                >
-                  {languageOptions.map((opt) => (
-                    <MenuItem key={opt.code} value={opt.code}>
-                      {opt.code === 'fa' ? 'فارسی' : 'انگلیسی'}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            )}
-          />
-        </Box>
-
-        <Controller
-          name="model"
-          control={control}
-          render={({ field }) => (
-            <TextField select fullWidth label="مدل" {...field}>
-              <MenuItem value="gpt4o">gpt</MenuItem>
-              <MenuItem value="gemini_pro">gemini</MenuItem>
-              <MenuItem value="blip">blip</MenuItem>
-              <MenuItem value="llama">llama</MenuItem>
-            </TextField>
-          )}
-        />
-
-        <Controller
-          name="context"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              label="توضیحات اضافی"
-              placeholder="مثال: این عکس از نمای بیرونی موزه مت نیویورک است"
-              fullWidth
-              multiline
-              minRows={3}
-              disabled={isBlip}
-              {...field}
+                  {...field}
+                />
+              )}
             />
-          )}
-        />
+          }
 
-        <Box display="flex" gap={2}>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={loading}
-            startIcon={loading ? <CircularProgress size={20} /> : null}
-          >
-            {loading ? 'در حال تولید...' : submitButtonText}
-          </Button>
-          <Button type="button" variant="outlined" onClick={() => reset()}>
-            بازنشانی
-          </Button>
+          <Box display="flex" gap={2}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={loading}
+              startIcon={loading ? <CircularProgress size={20} /> : null}
+            >
+              {loading ? 'در حال تولید...' : submitButtonText}
+            </Button>
+            <Button type="button" variant="outlined" onClick={() => reset()}>
+              بازنشانی
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      </Stack>
     </Box>
   )
 }

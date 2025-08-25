@@ -20,7 +20,6 @@ export default function CaptionPage() {
         <ImageCaptionForm
           onSubmit={handleSubmit}
           loading={loading}
-          title="تولیدکننده کپشن تصویر"
           description="تولید کپشن برای تصاویر با استفاده از هوش مصنوعی"
           submitButtonText="تولید کپشن"
         />

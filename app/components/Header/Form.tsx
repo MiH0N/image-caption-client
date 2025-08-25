@@ -4,9 +4,6 @@ import { usePathname, useRouter } from "next/navigation";
 import HeaderLayout from ".";
 import { featureCards } from "@/app/libs/data/feature";
 
-interface FormHeaderProps {
-
-}
 const FormHeader = () => {
   const router = useRouter()
   const pathname = usePathname()

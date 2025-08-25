@@ -19,12 +19,12 @@ export default function TagsPage() {
         <ImageCaptionForm
           onSubmit={handleSubmit}
           loading={loading}
-          title="تولیدکننده هشتگ تصویر"
           description="تولید هشتگ برای تصاویر با استفاده از هوش مصنوعی"
           submitButtonText="تولید هشتگ"
+          showExtraInput={false}
         />
       </Stack>
-      
+
       <ResultsDisplay
         loading={loading}
         error={error}

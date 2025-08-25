@@ -17,7 +17,7 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
           sx={{
             fontWeight: 700,
             color: '#2C3E50',
-            mb: 2,
+            mb: 1.5,
           }}
         >
           {header}
@@ -28,8 +28,8 @@ const HeaderLayout: FC<HeaderLayoutProps> = ({
             sx={{
               position: 'absolute',
               right: 0,
-              top: '50%',
-              transform: 'translateY(-50%)',
+              top: '10%',
+              transform: 'translateY(-25%)',
             }}
           >
             <HomeIcon />

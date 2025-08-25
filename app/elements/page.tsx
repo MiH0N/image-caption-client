@@ -19,12 +19,12 @@ export default function ElementsPage() {
         <ImageCaptionForm
           onSubmit={handleSubmit}
           loading={loading}
-          title="تشخیص پردازش اشیاء"
           description="تشخیص و توصیف پردازش اشیاء موجود در تصویر با استفاده از هوش مصنوعی"
           submitButtonText="پردازش تصویر"
+          showExtraInput={false}
         />
       </Stack>
-      
+
       <ResultsDisplay
         loading={loading}
         error={error}

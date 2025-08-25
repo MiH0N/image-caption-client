@@ -81,13 +81,13 @@ export default function ImageUploadDropzone({ value, onChange }: ImageUploadDrop
           </Box>
         </DropArea>
       ) : (
-        <Box mt={1}>
+        <Box>
           {previewUrl && (
             <Box
               component="img"
               src={previewUrl}
               alt="Preview"
-              sx={{ maxWidth: '100%', maxHeight: 300, borderRadius: 1, display: 'block' }}
+              sx={{ maxWidth: '100%', maxHeight: 250, borderRadius: 1, display: 'block' }}
             />
           )}
           <Box display="flex" gap={1} mt={2}>
