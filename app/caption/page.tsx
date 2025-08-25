@@ -5,6 +5,7 @@ import { Stack } from '@mui/material'
 import ImageCaptionForm from '../components/Form/ImageCaptionForm'
 import ResultsDisplay from '../components/Results/ResultsDisplay'
 import { useApiCall } from '../hooks/useApiCall'
+import FormHeader from '../components/Header/Form'
 
 export default function CaptionPage() {
   const { loading, response, error, handleSubmit } = useApiCall({
@@ -24,7 +25,7 @@ export default function CaptionPage() {
           submitButtonText="تولید کپشن"
         />
       </Stack>
-      
+
       <ResultsDisplay
         loading={loading}
         error={error}

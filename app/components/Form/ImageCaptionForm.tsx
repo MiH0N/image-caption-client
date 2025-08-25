@@ -16,6 +16,7 @@ import {
 } from '@mui/material'
 
 import ImageUploadDropzone from '../Inputs/ImageUploadDropzone'
+import FormHeader from '../Header/Form'
 
 export type LanguageOption = {
   label: string
@@ -92,10 +93,10 @@ export default function ImageCaptionForm({
 
   return (
     <Box component="form" onSubmit={handleSubmit(handleFormSubmit)} sx={{ flex: 1 }}>
-      <Typography variant="h4" fontWeight={700} gutterBottom>
-        {title}
-      </Typography>
-      <Typography color="text.secondary" gutterBottom>
+      {/* <Typography variant="body1" component="p" fontWeight={700} gutterBottom>
+          {title}
+        </Typography> */}
+      <Typography variant="body2" component="p" color="text.secondary" gutterBottom>
         {description}
       </Typography>
 
@@ -161,7 +162,7 @@ export default function ImageCaptionForm({
             )}
           />
         </Box>
-        
+
         <Controller
           name="model"
           control={control}

@@ -8,6 +8,7 @@ import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import rtlPlugin from 'stylis-plugin-rtl'
 import { prefixer } from 'stylis'
+import FormHeader from './components/Header/Form'
 
 export default function RootLayout({
   children,
@@ -37,14 +38,16 @@ export default function RootLayout({
               <Box
                 sx={{
                   width: { xs: '100%', md: '726px' },
-                  minHeight: { xs: 'auto', md: '620px' },
+                  height: { xs: 'auto', md: '620px' },
                   mx: 'auto',
                   backgroundColor: 'white',
                   borderRadius: 3,
                   boxShadow: '0 4px 40px 0 rgba(0, 0, 0, 0.02)',
-                  p: 3
+                  p: 3,
+                  overflowY: 'hidden'
                 }}
               >
+                <FormHeader />
                 {children}
               </Box>
             </Box>
