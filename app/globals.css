@@ -56,3 +56,55 @@ body {
   font-style: normal;
   font-display: swap;
 }
+
+
+
+@keyframes shake-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  10% {
+    transform: translateY(-4px);
+  }
+
+  20% {
+    transform: translateY(4px);
+  }
+
+  30% {
+    transform: translateY(-4px);
+  }
+
+  40% {
+    transform: translateY(4px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+  60% {
+    transform: translateY(4px);
+  }
+
+  70% {
+    transform: translateY(-4px);
+  }
+
+  80% {
+    transform: translateY(3.2px);
+  }
+
+  90% {
+    transform: translateY(-3.2px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.shake-vertical-animation {
+  animation: shake-vertical 10s linear 0s infinite normal none;
+}
