@@ -1,12 +1,10 @@
 'use client'
 
 import React from 'react'
-import { Box, Typography, Stack, IconButton, Divider } from '@mui/material'
+import { Typography, Stack} from '@mui/material'
 import { useRouter } from 'next/navigation'
-import HomeIcon from '@mui/icons-material/Home';
 import FeatureCard from './components/Card/FeatureCard'
 import { featureCards } from './libs/data/feature';
-import HeaderLayout from './components/Header';
 
 export default function Home() {
   const router = useRouter()

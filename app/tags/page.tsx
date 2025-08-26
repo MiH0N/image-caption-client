@@ -3,8 +3,8 @@
 import React from 'react'
 import { Stack } from '@mui/material'
 import ImageCaptionForm from '../components/Form/ImageCaptionForm'
-import ResultsDisplay from '../components/Results/ResultsDisplay'
 import { useApiCall } from '../hooks/useApiCall'
+import TagsResultsDisplay from '../components/Results/Tags'
 
 export default function TagsPage() {
   const { loading, response, error, handleSubmit } = useApiCall({
@@ -19,13 +19,13 @@ export default function TagsPage() {
         <ImageCaptionForm
           onSubmit={handleSubmit}
           loading={loading}
-          description="تولید هشتگ برای تصاویر با استفاده از هوش مصنوعی"
+          description="تولید تگ برای تصاویر با استفاده از هوش مصنوعی"
           submitButtonText="تولید هشتگ"
           showExtraInput={false}
         />
       </Stack>
 
-      <ResultsDisplay
+      <TagsResultsDisplay
         loading={loading}
         error={error}
         response={response}
@@ -35,3 +35,4 @@ export default function TagsPage() {
     </Stack>
   )
 }
+

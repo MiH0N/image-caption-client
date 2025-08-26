@@ -5,6 +5,7 @@ import { Stack } from '@mui/material'
 import ImageCaptionForm from '../components/Form/ImageCaptionForm'
 import ResultsDisplay from '../components/Results/ResultsDisplay'
 import { useApiCall } from '../hooks/useApiCall'
+import ElementResultsDisplay from '../components/Results/Elements'
 
 export default function ElementsPage() {
   const { loading, response, error, handleSubmit } = useApiCall({
@@ -25,7 +26,7 @@ export default function ElementsPage() {
         />
       </Stack>
 
-      <ResultsDisplay
+      <ElementResultsDisplay
         loading={loading}
         error={error}
         response={response}

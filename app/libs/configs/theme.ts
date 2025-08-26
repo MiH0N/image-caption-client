@@ -16,6 +16,7 @@ const theme = createTheme(
         styleOverrides: {
           root: {
             borderRadius: "12px",
+            transition : 'all 0.2s ease'
           },
         },
       },

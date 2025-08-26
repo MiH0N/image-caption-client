@@ -10,6 +10,7 @@ import {
   Stack,
 } from '@mui/material'
 import CaptionCard from '../Card/Caption'
+import ChipsTag from '../Chip/Tags'
 
 interface TagsResultsDisplayProps {
   loading: boolean
@@ -26,9 +27,9 @@ export default function TagsResultsDisplay({
   title = 'نتایج تولیدشده',
   emptyMessage = 'هنوز نتیجه‌ای تولید نشده است. یک تصویر بارگذاری کنید و روی دکمه مربوطه بزنید.',
 }: TagsResultsDisplayProps) {
-  
+
   return (
-    <Box sx={{ mt: 4, p: 3, height: 'fit-content', minWidth: { md: 300 } }}>
+    <Box sx={{ mt: 4, height: 'fit-content', minWidth: { md: 300 } }}>
       <Typography variant="h6" gutterBottom>
         {title}
       </Typography>
@@ -40,13 +41,13 @@ export default function TagsResultsDisplay({
       )}
 
       {response.length > 0 && (
-        <Stack spacing={2}>
+        <Stack gap={1.5} direction={'row'} overflow={'hidden'} flexWrap={'wrap'}>
           {response.map((item, index) => (
-            <CaptionCard key={index} text={item} />
+            <ChipsTag key={index} text={item} />
           ))}
         </Stack>
       )}
-      
+
       {!loading && !error && response.length === 0 && (
         <Typography color="text.secondary" align="center">
           {emptyMessage}
