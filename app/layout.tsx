@@ -7,8 +7,8 @@ import "./globals.css";
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import rtlPlugin from 'stylis-plugin-rtl'
-import { prefixer } from 'stylis'
 import FormHeader from './components/Header/Form'
+import { prefixer } from 'stylis'
 
 export default function RootLayout({
   children,

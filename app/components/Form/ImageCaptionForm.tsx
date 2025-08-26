@@ -96,7 +96,7 @@ export default function ImageCaptionForm({
       <Typography variant="subtitle1" component="p" color="text.secondary" gutterBottom sx={{ mb: 2.5 }}>
         {description}
       </Typography>
-      <Stack direction='row-reverse' spacing={2}>
+      <Stack direction='row' spacing={2}>
         <Controller
           name="image"
           control={control}

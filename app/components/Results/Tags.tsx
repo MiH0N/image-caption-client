@@ -3,13 +3,11 @@
 import React from 'react'
 import {
   Box,
-  Paper,
   Typography,
-  Alert,
   CircularProgress,
   Stack,
+  Grow,
 } from '@mui/material'
-import CaptionCard from '../Card/Caption'
 import ChipsTag from '../Chip/Tags'
 
 interface TagsResultsDisplayProps {
@@ -43,7 +41,16 @@ export default function TagsResultsDisplay({
       {response.length > 0 && (
         <Stack gap={1.5} direction={'row'} overflow={'hidden'} flexWrap={'wrap'}>
           {response.map((item, index) => (
-            <ChipsTag key={index} text={item} />
+            <Grow
+              key={index}
+              in={true}
+              style={{ transformOrigin: '0 0 0' }}
+              timeout={index * 800}
+            >
+              <div>
+                <ChipsTag key={index} text={item} />
+              </div>
+            </Grow>
           ))}
         </Stack>
       )}

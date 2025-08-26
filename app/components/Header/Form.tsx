@@ -7,7 +7,7 @@ import { featureCards } from "@/app/libs/data/feature";
 const FormHeader = () => {
   const router = useRouter()
   const pathname = usePathname()
-  const currentTool = pathname.split('/')[1]
+  const currentTool = pathname.split('/')?.[1]
   const isHomePage = !currentTool.length
   const header = isHomePage ? "ابزارها" : featureCards.filter(dataItem => dataItem.id === currentTool)[0].title
 

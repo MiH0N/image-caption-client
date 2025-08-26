@@ -1,7 +1,6 @@
 import { copyToClipboard } from "@/app/libs/utils/clipboard"
 import Chip from "@mui/material/Chip"
 import { FC, useState } from "react"
-import TagIcon from '@mui/icons-material/Tag';
 import DoneIcon from '@mui/icons-material/Done';
 import CopyAll from '@mui/icons-material/CopyAll';
 import Snackbar from "@mui/material/Snackbar";

@@ -8,6 +8,7 @@ import {
   Stack,
   Avatar,
   Chip,
+  Grow,
 } from '@mui/material'
 
 interface ElementResultsDisplayProps {
@@ -41,7 +42,16 @@ export default function ElementResultsDisplay({
       {response.length > 0 && (
         <Stack gap={1.5} direction={'row'} overflow={'hidden'} flexWrap={'wrap'}>
           {response.map((item, index) => (
-            <Chip key={index} label={item} variant="outlined" />
+            <Grow
+              key={index}
+              in={true}
+              style={{ transformOrigin: '0 0 0' }}
+              timeout={index * 800}
+            >
+              <div>
+                <Chip label={item} variant="outlined" />
+              </div>
+            </Grow>
           ))}
         </Stack>
       )}
