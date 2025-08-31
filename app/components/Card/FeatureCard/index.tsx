@@ -40,9 +40,9 @@ export default function FeatureCard({
         position: 'relative',
         overflow: 'visible',
         boxShadow: '0 6px 12px 0 rgba(0, 0, 0, 0.03)',
-        transition : 'all 0.3s ease',
+        transition: 'all 0.3s ease',
         '&:hover': {
-          transform: 'scale(1.008)', 
+          transform: 'scale(1.008)',
           boxShadow: '0 6px 12px 0 rgba(0, 0, 0, 0.05)',
         }
       }}
@@ -100,14 +100,15 @@ export default function FeatureCard({
           sx={{
             position: 'absolute',
             bottom: '12px',
-            right: '12px',
+            // left: '35%',
+            right: '30%',
             width: { xs: '80px', md: '80px' },
             height: { xs: '80px', md: '80px' },
             borderRadius: '8px',
             overflow: 'hidden',
             zIndex: 1,
             transition: 'all 0.6s ease',
-            transform: isHover ? 'translateY(-5px)' : 'translateY(0)'
+            transform: isHover ? 'translateY(-6px)' : 'translateX(20%)'
           }}
         >
           <Image

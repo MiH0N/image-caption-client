@@ -2,36 +2,44 @@
 
 import React from 'react'
 import { Stack } from '@mui/material'
-import ImageCaptionForm from '../components/Form/ImageCaptionForm'
-import ResultsDisplay from '../components/Results/ResultsDisplay'
 import { useApiCall } from '../hooks/useApiCall'
+import LoadingWrapper from '../components/LoadingWrapper'
+import FormWrapper from '../components/Form/FormWrapper'
+import { useFormState } from '../hooks/useFormState'
+import ResultsDisplay from '../components/Results/ResultsDisplay'
 
 export default function CaptionPage() {
+  const { formData, showForm, handleFormSubmit, handleBackToForm } = useFormState()
   const { loading, response, error, handleSubmit } = useApiCall({
     endpoint: '/api/v1/caption',
     responseKey: 'captions',
     errorMessage: 'خطا در تولید کپشن',
   })
 
+  const onSubmit = (values: any) => handleFormSubmit(values, handleSubmit)
+
   return (
-    <Stack spacing={4} bgcolor="transparent">
-      <Stack sx={{ display: 'flex', gap: 4, flexDirection: { xs: 'column', md: 'row' } }}>
-        <ImageCaptionForm
-          onSubmit={handleSubmit}
+    <LoadingWrapper isLoading={loading}>
+      <Stack spacing={4} bgcolor="transparent">
+        <FormWrapper
+          showForm={showForm}
+          formData={formData}
+          onSubmit={onSubmit}
+          onBackToForm={handleBackToForm}
           loading={loading}
-          title="تولیدکننده کپشن تصویر"
           description="تولید کپشن برای تصاویر با استفاده از هوش مصنوعی"
           submitButtonText="تولید کپشن"
+          showExtraInput={true}
         />
-      </Stack>
-      
-      <ResultsDisplay
-        loading={loading}
-        error={error}
-        response={response}
-        title="کپشن‌های تولیدشده"
-        emptyMessage="هنوز کپشنی تولید نشده است. یک تصویر بارگذاری کنید و روی «تولید کپشن» بزنید."
-      />
-    </Stack>
+
+        <ResultsDisplay
+          loading={loading}
+          error={error}
+          response={response}
+          title="کپشن‌های تولیدشده"
+          emptyMessage="هنوز کپشنی تولید نشده است. یک تصویر بارگذاری کنید و روی «تولید کپشن» بزنید."
+        />
+      </Stack >
+    </LoadingWrapper>
   )
 }

@@ -3,17 +3,15 @@
 import React from 'react'
 import {
   Box,
-  Paper,
   Typography,
-  Alert,
   CircularProgress,
   Stack,
+  Avatar,
+  Chip,
   Grow,
-  Card,
 } from '@mui/material'
-import CaptionCard from '../Card/Caption'
 
-interface ResultsDisplayProps {
+interface ElementResultsDisplayProps {
   loading: boolean
   error: string | null
   response: string[]
@@ -21,24 +19,19 @@ interface ResultsDisplayProps {
   emptyMessage?: string
 }
 
-export default function ResultsDisplay({
+export default function ElementResultsDisplay({
   loading,
   error,
   response,
   title = 'نتایج تولیدشده',
   emptyMessage = 'هنوز نتیجه‌ای تولید نشده است. یک تصویر بارگذاری کنید و روی دکمه مربوطه بزنید.',
-}: ResultsDisplayProps) {
+}: ElementResultsDisplayProps) {
+
   return (
-    <Card sx={{ mt: 4, p: 3, height: 'fit-content', minWidth: { md: 300 } }}>
+    <Box sx={{ mt: 4, height: 'fit-content', minWidth: { md: 300 } }}>
       <Typography variant="h6" gutterBottom>
         {title}
       </Typography>
-
-      {error && (
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      )}
 
       {loading && (
         <Box display="flex" justifyContent="center" p={3}>
@@ -47,15 +40,17 @@ export default function ResultsDisplay({
       )}
 
       {response.length > 0 && (
-        <Stack spacing={2} mt={2}>
+        <Stack gap={1.5} direction={'row'} overflow={'hidden'} flexWrap={'wrap'}>
           {response.map((item, index) => (
             <Grow
               key={index}
               in={true}
               style={{ transformOrigin: '0 0 0' }}
-              timeout={index * 1000}
+              timeout={index * 800}
             >
-              <CaptionCard text={item} />
+              {/* <div> */}
+                <Chip label={item} variant="outlined" />
+              {/* </div> */}
             </Grow>
           ))}
         </Stack>
@@ -66,6 +61,6 @@ export default function ResultsDisplay({
           {emptyMessage}
         </Typography>
       )}
-    </Card>
+    </Box>
   )
 }

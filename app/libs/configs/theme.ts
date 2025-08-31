@@ -11,6 +11,16 @@ const theme = createTheme(
       primary: { main: "#1976d2" },
       secondary: { main: "#9c27b0" },
     },
+    components: {
+      MuiOutlinedInput: {
+        styleOverrides: {
+          root: {
+            borderRadius: "12px",
+            transition : 'all 0.2s ease'
+          },
+        },
+      },
+    },
   },
   faIR
 );
