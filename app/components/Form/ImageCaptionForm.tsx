@@ -16,20 +16,7 @@ import {
 } from '@mui/material'
 
 import ImageUploadDropzone from '../Inputs/ImageUploadDropzone'
-import FormHeader from '../Header/Form'
-
-export type LanguageOption = {
-  label: string
-  code: 'fa' | 'en'
-}
-
-export type FormValues = {
-  image: File | null
-  tone: string
-  language: LanguageOption | null
-  context: string
-  model: 'gpt4o' | 'gemini_pro' | 'blip' | 'llama'
-}
+import { IImagePrompt, LanguageOption } from '@/types/entity'
 
 const languageOptions: LanguageOption[] = [
   { label: 'Persian', code: 'fa' },
@@ -52,7 +39,7 @@ const toneOptions: ToneOption[] = [
 ]
 
 interface ImageCaptionFormProps {
-  onSubmit: (values: FormValues) => Promise<void>
+  onSubmit: (values: IImagePrompt) => Promise<void>
   loading?: boolean
   description?: string
   submitButtonText?: string;
@@ -66,7 +53,7 @@ export default function ImageCaptionForm({
   submitButtonText = 'تولید کپشن',
   showExtraInput = true,
 }: ImageCaptionFormProps) {
-  const { handleSubmit, control, reset, setValue, watch } = useForm<FormValues>({
+  const { handleSubmit, control, reset, setValue, watch } = useForm<IImagePrompt>({
     defaultValues: {
       image: null,
       tone: toneOptions[0].value,
@@ -86,7 +73,7 @@ export default function ImageCaptionForm({
     }
   }, [isBlip, setValue])
 
-  const handleFormSubmit = async (values: FormValues) => {
+  const handleFormSubmit = async (values: IImagePrompt) => {
     if (!values.image) return
     await onSubmit(values)
   }

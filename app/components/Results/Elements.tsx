@@ -48,9 +48,9 @@ export default function ElementResultsDisplay({
               style={{ transformOrigin: '0 0 0' }}
               timeout={index * 800}
             >
-              <div>
+              {/* <div> */}
                 <Chip label={item} variant="outlined" />
-              </div>
+              {/* </div> */}
             </Grow>
           ))}
         </Stack>
