@@ -20,7 +20,7 @@ export default function CaptionPage() {
 
   return (
     <LoadingWrapper isLoading={loading}>
-      <Stack spacing={4} bgcolor="transparent">
+      <Stack spacing={1} bgcolor="transparent">
         <FormWrapper
           showForm={showForm}
           formData={formData}

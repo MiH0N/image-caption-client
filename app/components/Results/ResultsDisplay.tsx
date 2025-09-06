@@ -8,10 +8,9 @@ import {
   Alert,
   CircularProgress,
   Stack,
-  Grow,
   Card,
 } from '@mui/material'
-import CaptionCard from '../Card/Caption'
+import TypewriterCaptionCard from '../Card/TypewriterCaption'
 
 interface ResultsDisplayProps {
   loading: boolean
@@ -29,11 +28,7 @@ export default function ResultsDisplay({
   emptyMessage = 'هنوز نتیجه‌ای تولید نشده است. یک تصویر بارگذاری کنید و روی دکمه مربوطه بزنید.',
 }: ResultsDisplayProps) {
   return (
-    <Card sx={{ mt: 4, p: 3, height: 'fit-content', minWidth: { md: 300 } }}>
-      <Typography variant="h6" gutterBottom>
-        {title}
-      </Typography>
-
+    <Card sx={{ p: 3, pt:0, height: 'fit-content', minWidth: { md: 300 } }}>
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>
           {error}
@@ -49,14 +44,12 @@ export default function ResultsDisplay({
       {response.length > 0 && (
         <Stack spacing={2} mt={2}>
           {response.map((item, index) => (
-            <Grow
+            <TypewriterCaptionCard
               key={index}
-              in={true}
-              style={{ transformOrigin: '0 0 0' }}
-              timeout={index * 1000}
-            >
-              <CaptionCard text={item} />
-            </Grow>
+              text={item}
+              delay={30}
+              startDelay={index * 500}
+            />
           ))}
         </Stack>
       )}

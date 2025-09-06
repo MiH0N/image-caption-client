@@ -7,9 +7,8 @@ import {
   CircularProgress,
   Stack,
   Avatar,
-  Chip,
-  Grow,
 } from '@mui/material'
+import TypewriterChip from '../Chip/TypewriterChip'
 
 interface ElementResultsDisplayProps {
   loading: boolean
@@ -42,16 +41,13 @@ export default function ElementResultsDisplay({
       {response.length > 0 && (
         <Stack gap={1.5} direction={'row'} overflow={'hidden'} flexWrap={'wrap'}>
           {response.map((item, index) => (
-            <Grow
+            <TypewriterChip 
               key={index}
-              in={true}
-              style={{ transformOrigin: '0 0 0' }}
-              timeout={index * 800}
-            >
-              {/* <div> */}
-                <Chip label={item} variant="outlined" />
-              {/* </div> */}
-            </Grow>
+              label={item} 
+              delay={40}
+              startDelay={index * 300}
+              variant="outlined"
+            />
           ))}
         </Stack>
       )}

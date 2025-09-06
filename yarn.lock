@@ -1215,6 +1215,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+performance-now@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+  integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
+
 picocolors@^1.0.0, picocolors@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.1.1.tgz#3d321af3eab939b083c8f929a1d12cda81c26b6b"
@@ -1251,6 +1256,13 @@ proxy-from-env@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
   integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
+
+raf@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
+  integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
+  dependencies:
+    performance-now "^2.1.0"
 
 react-dom@19.1.0:
   version "19.1.0"
@@ -1422,6 +1434,14 @@ typescript@^5:
   version "5.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.3.tgz#92f8a3e5e3cf497356f4178c34cd65a7f5e8440e"
   integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==
+
+typewriter-effect@^2.22.0:
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/typewriter-effect/-/typewriter-effect-2.22.0.tgz#28a8339f2ddd41b37bdfa732b42f18df97f2e6d1"
+  integrity sha512-01HCRYY462wT8Fxps/epwGCioZd/GMXY0aLKhFKrfJ5Xhgf54/SiDx7Oq7PoES5kGqOEAdW8FS8HYVM2WSvfhQ==
+  dependencies:
+    prop-types "^15.8.1"
+    raf "^3.4.1"
 
 undici-types@~6.21.0:
   version "6.21.0"

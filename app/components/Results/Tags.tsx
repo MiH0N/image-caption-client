@@ -6,9 +6,8 @@ import {
   Typography,
   CircularProgress,
   Stack,
-  Grow,
 } from '@mui/material'
-import ChipsTag from '../Chip/Tags'
+import TypewriterChipsTag from '../Chip/TypewriterChipsTag'
 
 interface TagsResultsDisplayProps {
   loading: boolean
@@ -41,16 +40,12 @@ export default function TagsResultsDisplay({
       {response.length > 0 && (
         <Stack gap={1.5} direction={'row'} overflow={'hidden'} flexWrap={'wrap'}>
           {response.map((item, index) => (
-            <Grow
+            <TypewriterChipsTag 
               key={index}
-              in={true}
-              style={{ transformOrigin: '0 0 0' }}
-              timeout={index * 800}
-            >
-              <div>
-                <ChipsTag key={index} text={item} />
-              </div>
-            </Grow>
+              text={item} 
+              delay={40}
+              startDelay={index * 300}
+            />
           ))}
         </Stack>
       )}
